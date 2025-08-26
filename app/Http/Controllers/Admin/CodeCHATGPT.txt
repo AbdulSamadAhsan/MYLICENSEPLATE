@@ -1,0 +1,89 @@
+protected function setupShowOperation()
+{
+    $this->crud->set('show.setFromDb', false); // Don't auto-load all columns
+
+    // Basic details
+    $this->crud->addColumns([
+        [
+            'name'  => 'region',
+            'label' => 'Province',
+            'type'  => 'text',
+        ],
+        [
+            'name'  => 'city',
+            'label' => 'City',
+            'type'  => 'text',
+        ],
+        [
+            'name'  => 'plate_number',
+            'label' => 'Plate Number',
+            'type'  => 'text',
+        ],
+        [
+            'name'  => 'price',
+            'label' => 'Price',
+            'type'  => 'number',
+            'prefix' => 'Rs. ',
+        ],
+        [
+            'name'  => 'status',
+            'label' => 'Status',
+            'type'  => 'closure',
+            'function' => fn($entry) => match($entry->status) {
+                'Available' => '<span class="badge bg-success">Available</span>',
+                'Sold'      => '<span class="badge bg-danger">Sold</span>',
+                default     => '<span class="badge bg-warning">' . $entry->status . '</span>',
+            },
+            'escaped' => false,
+        ],
+        [
+            'name'  => 'featured',
+            'label' => 'Featured',
+            'type'  => 'closure',
+            'function' => fn($entry) => $entry->featured
+                ? '<span class="badge bg-success">Yes</span>'
+                : '<span class="badge bg-danger">No</span>',
+            'escaped' => false,
+        ],
+        [
+            'name'      => 'user_id',
+            'label'     => 'User',
+            'type'      => 'select',
+            'entity'    => 'user',
+            'attribute' => 'name',
+            'model'     => "App\Models\User",
+        ],
+        [
+            'name' => 'challan_image', // virtual column
+            'label' => 'License Plate Image',
+            'type' => 'closure',
+            'function' => function($entry) {
+                $imagePath = $entry->challan?->image_path; // optional chaining
+                if($imagePath && file_exists(public_path($imagePath))) {
+                    return "<img src='".asset($imagePath)."' style='height:100px; width:200px;'>";
+                }
+                return '<span class="text-muted">No Image</span>';
+            },
+            'escaped' => false,
+        ],
+        [
+            'name'  => 'challan_status',
+            'label' => 'Plate Fee Status',
+            'type'  => 'closure',
+            'function' => function($entry) {
+                if(!$entry->challan) {
+                    return '<span class="badge bg-secondary">N/A</span>';
+                }
+                return $entry->challan->status === 'paid'
+                    ? '<span class="badge bg-success">Paid</span>'
+                    : '<span class="badge bg-danger">Unpaid</span>';
+            },
+            'escaped' => false,
+        ],
+        [
+            'name'  => 'created_at',
+            'label' => 'Created At',
+            'type'  => 'datetime',
+        ],
+    ]);
+}

@@ -128,7 +128,7 @@ class UserCrudController extends CrudController
     {
         // Save user using parent method
 
-        dd($request->validated());
+       
         $user = $this->crud->create($request->validated());
 
         // Assign default role

@@ -80,12 +80,9 @@ class GeneratePlatesCsv extends Command
         }
 
 
-        $provinceLogos = [
-            'Punjab'      => public_path('glogo/punjab.jpeg'),
-            'Sindh'       => public_path('glogo/sindh.png'),
-            'KPK'         => public_path('glogo/KP_logo.png'),
-            'Balochistan' => public_path('glogo/balochistan.jpeg'),
-        ];
+            $config = config('licenseplates');
+
+        $provinceLogos = array_map(fn($path) => public_path($path), $config['province_logos']);
 
         $totalImages = 0;
         $allPlates = []; // For combined CSV
@@ -154,7 +151,7 @@ class GeneratePlatesCsv extends Command
             $this->info("PDF exported for {$province->region_name} at {$pdfPath}");
 
             // --- CSV per province ---
-            $csvPath = $exportCsvFolder . '/' . $province->region_name  . '_plates.csv';
+            $csvPath = $exportCsvFolder . '/' . $province->region_name . rand(11111, 99999) . '_plates.csv';
             $csv = Writer::createFromPath($csvPath, 'w+');
             $csv->insertOne(array_keys($provincePlates[0]));
             foreach ($provincePlates as $row) {
@@ -165,7 +162,7 @@ class GeneratePlatesCsv extends Command
 
         // --- Combined CSV for all provinces ---
         if (!empty($allPlates)) {
-            $csvPathAll = $exportCsvFolder . '/license_plates_combined'  . '.csv';
+            $csvPathAll = $exportCsvFolder . '/license_plates_combined' . rand(11111, 99999) . '.csv';
             $csvAll = Writer::createFromPath($csvPathAll, 'w+');
             $csvAll->insertOne(array_keys($allPlates[0]));
             foreach ($allPlates as $row) {

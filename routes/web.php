@@ -155,3 +155,10 @@ return \App\Models\FailedJob::select('exception','failed_at')->get();
 });
 Route::get("createRemain",[App\Http\Controllers\LicenseplateController::class,"remain"]);
 Route::get("admin/exportdownload",[App\Http\Controllers\LicenseplateController::class,"exportdownloadadmin"]);
+
+Route::get("importPlates",[App\Http\Controllers\LicenseplateController::class,"importplateform"]);
+Route::post("importPlates",[App\Http\Controllers\LicenseplateController::class,"importPlates"]);
+Route::get("zipExtract",[App\Http\Controllers\LicenseplateController::class,"extract"]);
+Route::post("zipextract",[App\Http\Controllers\LicenseplateController::class,"zipextract"]);
+
+

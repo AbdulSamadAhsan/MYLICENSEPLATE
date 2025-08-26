@@ -199,7 +199,7 @@
 
                             <a href="{{route('plates.upload')}}" class="btn btn-success m-1">Create From Image</a>
 
-
+ <a href="{{ url('/importPlates') }}" class="btn btn-success m-1"> Import Plate</a>
 
                             <thead>
                                 <tr>

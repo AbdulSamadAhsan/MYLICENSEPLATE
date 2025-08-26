@@ -18,8 +18,8 @@
                 @csrf
                 <div class="mb-3">
                     <label for="plate_image" class="form-label">Select Plate Image</label>
-                    <input type="file" class="form-control @error('plate_image') is-invalid @enderror" 
-                           id="plate_image" name="plate_image" accept="image/*" required>
+                    <input type="file" class="form-control @error('file') is-invalid @enderror" 
+                           id="plate_image" name="file" accept="image/*" required>
                     @error('plate_image')
                         <span class="invalid-feedback">{{ $message }}</span>
                     @enderror

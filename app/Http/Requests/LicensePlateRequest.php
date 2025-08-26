@@ -14,7 +14,7 @@ class LicensePlateRequest extends FormRequest
     public function authorize()
     {
         // only allow updates if the user is logged in
-        return backpack_auth()->check();
+        return true;
     }
 
     /**
@@ -25,7 +25,7 @@ class LicensePlateRequest extends FormRequest
     public function rules()
     {
         return [
-         'plate_number' => 'required|min:5|max:255',
+         'plate_number' => 'required|min:5|max:255|unique:licenseplates,plate_number',
 
          "region"=>"required",
          "city"=>"required",

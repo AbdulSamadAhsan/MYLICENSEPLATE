@@ -13,16 +13,27 @@
 /.zed
 /auth.json
 /node_modules
-/public/build
-/public/hot
-/public/challans
-/public/plates
-/public/Tesseract-OCR
-/public/Tesseract-OCR/
-/public/storage
-/public/plates_image
-/public/exports_csv
-/public/exports_pdf
+# /public/build
+# /public/hot
+# /public/challans
+# /public/plates
+# /public/Tesseract-OCR
+# /public/Tesseract-OCR/
+# /public/storage
+# /public/plates_image
+# /public/exports_csv
+# /public/exports_pdf
+# /public
+/public/**
+
+# Whitelist css folder and its contents
+!/public/css/
+!/public/css/**
+!/public/glogo
+!/public/glogo
+# Whitelist .htaccess file
+/public/mail_zip
+!/public/.htaccess
 /storage/*.key
 /storage/pail
 /vendor

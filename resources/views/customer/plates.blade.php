@@ -297,21 +297,38 @@
                         @break
 
                         @case('Sindh')
-                         <div class="col-md-3">
-                            <x-sindh-plate :plate="$plate" />
-                         </div>
+                            <div class="col-md-3">
+                                <x-sindh-plate :plate="$plate" />
+                            </div>
                         @break
 
                         @case('Balochistan')
-                         <div class="col-md-3">
-                            <x-balochistan-plate :plate="$plate" />
-                         </div>
+                            <div class="col-md-3">
+                                <x-balochistan-plate :plate="$plate" />
+                            </div>
                         @break
 
                         @case('KPK')
-                         <div class="col-md-3">
-                            <x-kpk-plate :plate="$plate" />
-                         </div>
+                            <div class="col-md-3">
+                                <x-kpk-plate :plate="$plate" />
+                            </div>
+                        @break
+
+                        @case('Gilgit')
+                            <div class="col-md-3">
+                                <x-gilgit-plate :plate="$plate" />
+                            </div>
+                        @break
+
+                        @case('Kashmir')
+                            <div class="col-md-3">
+                                <x-azad-plate :plate="$plate" />
+                            </div>
+                        @break
+                         @case('IC')
+                            <div class="col-md-3">
+                                <x-islamabad-plate :plate="$plate" />
+                            </div>
                         @break
                     @endswitch
                 @endforeach

@@ -1,4 +1,4 @@
-@php
+{{-- {{-- @php
     $groupedPlates = $plates->groupBy('region');
 @endphp
 
@@ -112,7 +112,7 @@
     @if(View::exists($component))
         @component($component, ['plate' => $plate]) @endcomponent
     @else
-        <x-default-plate :plate="$plate" />
+        {{-- <x-default-plate :plate="$plate" /> --}}
     @endif
 @endforeach
 @foreach($plates->where('region', 'Punjab') as $plate)
@@ -120,7 +120,7 @@
 @endforeach
 @foreach($plates->where('region', 'Sindh') as $plate)
     <x-sindh-plate :plate="$plate" />
-@endforeach
+@endforeach --}}
 
 @php $regions = ['Punjab', 'Sindh', 'Balochistan', 'KPK']; @endphp
 

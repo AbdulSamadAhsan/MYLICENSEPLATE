@@ -1,0 +1,44 @@
+use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\File;
+
+protected function setupShowOperation()
+{
+    $this->crud->set('show.setFromDb', false);
+
+    $this->crud->addColumn([
+        'name' => 'challan_image',
+        'label' => 'License Plate Image',
+        'type' => 'closure',
+        'function' => function($entry) {
+            // Path to save PDF/image
+            $fileName = 'plate_'.$entry->id.'.pdf'; // or .png if generating image
+            $filePath = public_path('plates/'.$fileName);
+
+            // Create folder if not exists
+            if (!File::exists(public_path('plates'))) {
+                File::makeDirectory(public_path('plates'), 0755, true);
+            }
+
+            // Check if file exists, if not generate it
+            if (!File::exists($filePath)) {
+                // Generate PDF from Blade
+                $pdf = Pdf::loadView('pdf.plate_challan', [
+                    'plate' => $entry,
+                    'user' => $entry->user,
+                    'dueDate' => now()->addMonths(2)->format('d M Y'),
+                    'LatePaymentPenalty' => 500,
+                    'invoiceNumber' => 'INV-' . rand(100000, 999999),
+                    'paymentMethod' => 'Bank',
+                    'provinceLogo' => public_path('glogo/'.$entry->region.'.jpeg')
+                ])->setPaper('A4', 'portrait');
+
+                // Save PDF to public path
+                $pdf->save($filePath);
+            }
+
+            // Return clickable link
+            return "<a href='".asset('plates/'.$fileName)."' target='_blank'>View PDF</a>";
+        },
+        'escaped' => false,
+    ]);
+}

@@ -155,6 +155,7 @@ class ProcessChallansJob implements ShouldQueue
                 'Sindh'       => public_path('glogo/sindh.png'),
                 'KPK'         => public_path('glogo/KP_logo.png'),
                 'Balochistan' => public_path('glogo/balochistan.jpeg'),
+                "Gilgit" => public_path('glogo/gilgit.png'),
             ];
             $provinceLogo = $provinceLogos[$plate->region] ?? null;
 

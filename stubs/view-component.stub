@@ -11,9 +11,10 @@ class {{ class }} extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct()
+     public $plate;
+    public function __construct($plate)
     {
-        //
+         $this->plate = $plate;
     }
 
     /**

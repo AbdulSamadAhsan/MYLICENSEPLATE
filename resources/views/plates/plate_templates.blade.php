@@ -4,8 +4,11 @@
      $provinceLogos = [
         'Punjab'      => "#007bff",
         'Sindh'       => "#ffc107",
-        'KPK'         => "#17a2b8",
-        'Balochistan' => "#dc3545",
+        'KPK'         => "#ffc107",
+        'Balochistan' => "#ffc107",
+        "Gilgit"      =>"#ffc107",
+        "IC"=>"#ffc107",
+        "Kashmir"=>"#ffc107",
     ];
   $provinceColor = $provinceLogos[$plate['Province']] ?? null;
 @endphp
@@ -18,8 +21,8 @@
     <td style="border: 1px solid #0d6efd; background-color: {{ $provinceColor }}; border-radius: 8px; padding: 15px; box-shadow: 0 8px 16px rgba(0,0,0,0.15); font-family: Arial, sans-serif; text-align: center;">
       
       <!-- Province Logo -->
-      <img src="{{ $provinceLogo }}" alt="Province Logo" width="40" height="40" 
-           style="display: block; margin: 0 auto 10px auto;">
+      {{-- <img src="{{ $provinceLogo }}" alt="Province Logo" width="40" height="40" 
+           style="display: block; margin: 0 auto 10px auto;"> --}}
 
       <!-- Region -->
       <div style="font-weight: bold; font-size: 1rem;  margin-bottom: 5px;">
@@ -27,7 +30,7 @@
       </div>
 
       <!-- Plate Number -->
-      <div style="font-size: 2rem; letter-spacing: 5px; color: white; font-weight: bold;  padding: 6px 10px; border-radius: 6px; display: inline-block; margin-bottom: 8px;">
+      <div style="font-size: 2rem; letter-spacing: 5px;  font-weight: bold;  padding: 6px 10px; border-radius: 6px; display: inline-block; margin-bottom: 8px;">
         {{ $plate['Plate Number'] ?? 'ABC 000' }}
       </div>
 

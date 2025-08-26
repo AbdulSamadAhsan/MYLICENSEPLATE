@@ -158,7 +158,7 @@ class LicensePlateCrudController extends CrudController
                     ])->render();
 
                     Browsershot::html($html)
-                        ->windowSize(800, 1000)
+                        ->windowSize(200, 400)
                         ->save($filePath);
 
                     // Update challan image path in DB

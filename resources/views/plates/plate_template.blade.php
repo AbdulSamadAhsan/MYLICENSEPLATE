@@ -4,6 +4,9 @@
         'Sindh' => '#ffc107',
         'KPK' => '#17a2b8',
         'Balochistan' => '#dc3545',
+        "Gilgit"=>"Orange",
+        "IC"=>"Pink",
+         "Kashmir"=>"Brown",
     ];
     $provinceColor = $provinceLogos[$plate->region] ?? null;
 @endphp
